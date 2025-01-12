@@ -13,11 +13,38 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f1f1f1;
+  background-color: #282828;
+  color: #fff;
 }
 
+.statusPicture img {
+  height: 14rem;
+  width: 14rem;
+  padding: 1rem;
+  border-radius: 20%;
+}
+.content {
+  text-align: left;
+}
+.content .title {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.homeLink {
+  color: #fff;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+.homeLink:hover {
+  color: pink;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+}
 @media screen and (min-width: 768px) {
-    body {
-        flex-direction: row;
-    }
+  body {
+    flex-direction: row;
+  }
 }
