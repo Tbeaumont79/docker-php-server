@@ -1,12 +1,9 @@
 services:
   php:
-    image: docker-php-server
-    container_name: php8.3
+    image: php:8.3-apache
     ports:
       - 8080:80
+    container_name: php8.3
     volumes:
       - ./src:/var/www/html
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
+    
