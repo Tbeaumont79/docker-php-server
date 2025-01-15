@@ -6,4 +6,6 @@ services:
     container_name: php8.3
     volumes:
       - ./src:/var/www/html
-    
+    build: 
+      context: .
+      dockerfile: Dockerfile
