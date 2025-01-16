@@ -23,7 +23,5 @@ COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY conf/httpd.conf /etc/apache2/conf-available/z-app.conf
 COPY ./src /var/www/html
 RUN sleep 5
-RUN a2ensite /etc/apache2/sites-available/000-default.conf
-RUN sleep 5
-RUN a2enmod rewrite 
-RUN  service apache2 restart
+
+
