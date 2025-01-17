@@ -5,7 +5,42 @@ services:
     container_name: php8.3
     volumes:
       - ./app:/var/www/app/
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
-    restart: unless-stopped
+
+  db:
+    platform: linux/amd64
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    container_name: mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=app
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+    networks:
+      - mysqlphpmyadmin
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8090:80
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST:mysql
+      - MYSQL_ROOT_PASSWORD:password
+    networks:
+      - mysqlphpmyadmin
+    depends_on:
+      - db
+
+networks:
+  mysqlphpmyadmin:
+
+volumes:
+  db_data:
