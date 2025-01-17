@@ -1,11 +1,11 @@
 services:
   php:
-    image: php:8.3-apache
     ports:
       - 8080:80
     container_name: php8.3
     volumes:
-      - ./src:/var/www/html
+      - ./app:/var/www/app/
     build: 
       context: .
       dockerfile: Dockerfile
+    restart: unless-stopped

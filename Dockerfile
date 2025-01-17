@@ -19,9 +19,16 @@ COPY conf/php.ini /usr/local/etc/php/conf.d/app.ini
 
 # Apache
 
-COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
-COPY conf/httpd.conf /etc/apache2/conf-available/z-app.conf
-COPY ./src /var/www/html
-RUN sleep 5
+COPY conf/vhost.conf /etc/apache2/sites-available/vhost.conf
+COPY ./app /var/www/app
 
+
+RUN a2ensite vhost.conf && \
+    a2dissite 000-default.conf && \
+    a2enmod rewrite
+
+
+EXPOSE 80
+
+CMD ["apache2-foreground"]
 
