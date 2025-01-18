@@ -10,20 +10,13 @@ services:
       dockerfile: Dockerfile
 
   db:
-    platform: linux/amd64
-    image: mysql:8.0
+    platform: linux/x86_64
+    image: mysql
     ports:
       - 3306:3306
-    expose:
-      - 3306
     container_name: mysql
-    volumes:
-      - db_data:/var/lib/mysql
     restart: always
     environment:
-      - MYSQL_DATABASE=db
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=admin
       - MYSQL_ROOT_PASSWORD=admin
     networks:
       - mysqlphpmyadmin
@@ -44,6 +37,7 @@ services:
 
 networks:
   mysqlphpmyadmin:
+    driver: bridge
 
 volumes:
   db_data:
