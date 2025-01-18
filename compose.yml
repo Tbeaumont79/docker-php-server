@@ -11,17 +11,20 @@ services:
 
   db:
     platform: linux/amd64
-    image: mysql:5.7
+    image: mysql:8.0
     ports:
       - 3306:3306
+    expose:
+      - 3306
     container_name: mysql
     volumes:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      - MYSQL_DATABASE=app
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=admin
     networks:
       - mysqlphpmyadmin
 
@@ -33,7 +36,7 @@ services:
     restart: always
     environment:
       - PMA_HOST:mysql
-      - MYSQL_ROOT_PASSWORD:password
+      - MYSQL_ROOT_PASSWORD:admin
     networks:
       - mysqlphpmyadmin
     depends_on:
