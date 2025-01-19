@@ -1,6 +1,4 @@
-<?php 
-    echo "Hello world";
-
+<?php       
 ?>
 <!DOCTYPE html>
     <html>
